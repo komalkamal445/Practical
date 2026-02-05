@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Student Registration</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Pirata+One&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Registration Form -->
+    <div class="form-wrapper" id="registrationForm">
+        <h2>Student Registration Form</h2>
+        <form id="studentForm">
+
+            <div class="form-row">
+                <label class="input-feilds">Roll No</label>
+                <input type="text" placeholder="Enter Roll Number" required>
+            </div>
+
+            <div class="form-row">
+                <label class="input-feilds">Student Name</label>
+                <div class="inline">
+                    <input type="text" placeholder="First Name" required>
+                    <input type="text" placeholder="Last Name" required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <label class="input-feilds">Father's Name</label>
+                <input type="text" placeholder="Father's Full Name" required>
+            </div>
+
+            <div class="form-row">
+                <label class="input-feilds">Date of Birth</label>
+                <input type="date" required>
+            </div>
+
+            <div class="form-row">
+                <label class="input-feilds">Mobile No</label>
+                <div class="inline small">
+                    <input type="text" placeholder="Enter Mobile Number" required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <label class="input-feilds">Email ID</label>
+                <input type="email" placeholder="Enter Email" required>
+            </div>
+
+            <div class="form-row">
+                <label class="input-feilds">Password</label>
+                <input type="password" id="password" placeholder="Enter Password" maxlength="20" required>
+                <div class="password-strength">
+                    <div id="passwordFill" class="password-strength-fill"></div>
+                </div>
+                <div id="passwordText" class="password-text"></div>
+                <div id="passwordMessage" style="font-size:12px; color:white; margin-top:3px;">
+                    Your password must be more than 4 and less than 20 characters.
+                </div>
+            </div>
+
+
+
+
+            <div class="form-row">
+                <label class="input-feilds">Gender</label>
+                <div class="options">
+                    <label><input type="radio" name="g" required> Male</label>
+                    <label><input type="radio" name="g"> Female</label>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <label class="input-feilds">Department</label>
+                <div class="options">
+                    <label><input type="checkbox"> CSE</label>
+                    <label><input type="checkbox"> IT</label>
+                    <label><input type="checkbox"> ECE</label>
+                    <label><input type="checkbox"> Civil</label>
+                    <label><input type="checkbox"> Mech</label>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <label class="input-feilds">Course</label>
+                <select required>
+                    <option>Select Current Course</option>
+                    <option>B.Tech</option>
+                    <option>B.Sc</option>
+                    <option>B.Com</option>
+                    <option>MBA</option>
+                    <option>MA</option>
+                </select>
+            </div>
+
+            <div class="form-row">
+                <label class="input-feilds">Country</label>
+                <select required>
+                    <option>Select Country</option>
+                    <option>America</option>
+                    <option>Bangladesh</option>
+                    <option>China</option>
+                    <option>Denmark</option>
+                    <option>England</option>
+                    <option>India</option>
+                    <option>USA</option>
+                    <option>UK</option>
+                    <option>Canada</option>
+                    <option>Australia</option>
+                    <option>Germany</option>
+                </select>
+            </div>
+
+            <div class="form-row">
+                <label class="input-feilds">Student Photo</label>
+                <input type="file">
+            </div>
+
+            <div class="form-row">
+                <label class="input-feilds">City</label>
+                <input type="text" placeholder="Enter City" required>
+            </div>
+
+            <div class="form-row">
+                <label class="input-feilds">Address</label>
+                <textarea placeholder="Enter Address" rows="3" required></textarea>
+            </div>
+
+            <div class="form-row center">
+                <button type="submit">Register</button>
+            </div>
+
+        </form>
+    </div>
+
+    <!-- Modal -->
+    <div id="popupModal" class="modal">
+        <div class="modal-content">
+            <p>Registration Successful!</p>
+            <button id="okBtn">OK</button>
+        </div>
+    </div>
+
+    <!-- Dashboard -->
+    <div class="dashboard-wrapper" id="dashboard">
+        <h1>🎉🎉Welcome to Dashboard!</h1>
+        <p style="text-align:center; color:white;">All your registration details are saved&sended here.</p>
+    </div>
+
+<script src="/script.js"></script>
+
+
+</body>
+
+</html>
