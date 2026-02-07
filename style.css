@@ -181,7 +181,7 @@
  }
 
  .modal-content button:hover {
-     background: linear-gradient(to right, #fd38a4, #f78112);
+     background: linear-gradient(to right, #f78112, #fd38a4);
      color: white;
  }
 
