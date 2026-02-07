@@ -1,72 +1,76 @@
-        const form = document.getElementById('studentForm');
-        const modal = document.getElementById('popupModal');
-        const okBtn = document.getElementById('okBtn');
-        const registrationForm = document.getElementById('registrationForm');
-        const dashboard = document.getElementById('dashboard');
+const form = document.getElementById('studentForm');
+const confirmModal = document.getElementById('confirmModal');
+const popupModal = document.getElementById('popupModal');
 
-        form.addEventListener('submit', function (e) {
-            e.preventDefault(); // Prevent form submission
-            modal.style.display = 'flex'; // Show popup
-        });
+const cancelBtn = document.getElementById('cancelBtn');
+const continueBtn = document.getElementById('continueBtn');
+const okBtn = document.getElementById('okBtn');
 
-        okBtn.addEventListener('click', function () {
-            modal.style.display = 'none';
-            registrationForm.style.display = 'none'; // Hide form
-            dashboard.style.display = 'block'; // Show dashboard
-        });
+const registrationForm = document.getElementById('registrationForm');
+const dashboard = document.getElementById('dashboard');
 
-        window.onclick = function (event) {
-            if (event.target == modal) { modal.style.display = "none"; }
-        }
-        const passwordInput = document.getElementById('password');
-        const passwordFill = document.getElementById('passwordFill');
-        const passwordText = document.getElementById('passwordText');
-        const passwordMessage = document.getElementById('passwordMessage');
+// Form submit → show confirm modal
+form.addEventListener('submit', e => {
+    e.preventDefault();
+    confirmModal.style.display = 'flex';
+});
 
-        passwordInput.addEventListener('input', function () {
-            const value = passwordInput.value;
-            const len = value.length;
+// Cancel → close confirm modal
+cancelBtn.addEventListener('click', () => {
+    confirmModal.style.display = 'none';
+});
 
-            // Reset if empty
-            if (len === 0) {
-                passwordFill.style.width = '0%';
-                passwordText.textContent = '';
-                passwordMessage.textContent = 'Your password must be more than 4 and less than 16 characters.';
-                passwordMessage.style.color = 'white';
-                return;
-            }
+// Continue → close confirm modal, show success modal
+continueBtn.addEventListener('click', () => {
+    confirmModal.style.display = 'none';
+    popupModal.style.display = 'flex';
+});
 
-            let strengthPercent = 0;
-            let text = '';
-            let color = '';
+// OK → close success modal, hide form, show dashboard
+okBtn.addEventListener('click', () => {
+    popupModal.style.display = 'none';
+    registrationForm.style.display = 'none';
+    dashboard.style.display = 'block';
+});
 
-            if (len <= 5) {
-                strengthPercent = 25;
-                text = 'Your Passwords looks Not Good/Weak';
-                color = 'red';
-            } else if (len <= 9) {
-                strengthPercent = 50;
-                text = 'Your Passwords looks Fair';
-                color = 'orange';
-            } else if (len <= 15) {
-                strengthPercent = 75;
-                text = 'Your Passwords looks Good';
-                color = 'yellow';
-            } else if (len <= 20) {
-                strengthPercent = 100;
-                text = 'Your Passwords looks Good & Strong ';
-                color = 'green';
-            }
+// Click outside modal → close
+window.onclick = (e) => {
+    if (e.target === confirmModal) confirmModal.style.display = 'none';
+    if (e.target === popupModal) popupModal.style.display = 'none';
+};
 
-            // Apply fill
-            passwordFill.style.width = strengthPercent + '%';
-            passwordFill.style.background = color;
+// Password strength
+const password = document.getElementById('password');
+const fill = document.getElementById('passwordFill');
+const text = document.getElementById('passwordText');
+const passwordMessage = document.getElementById('passwordMessage');
 
-            // Text below bar
-            passwordText.textContent = text;
-            passwordText.style.color = color;
+password.addEventListener('input', () => {
+    const len = password.value.length;
 
-            // Message
-            passwordMessage.textContent = 'Your password must be more than 4 and less than 16 characters.';
-            passwordMessage.style.color = 'white';
-        });
+    if (len === 0) {
+        fill.style.width = '0%';
+        text.textContent = '';
+        text.style.background = 'transparent';
+        passwordMessage.textContent = 'Your password must be more than 4 and less than 16 characters.';
+        passwordMessage.style.color = 'white';
+        return;
+    }
+
+    let percent = 0, color = '', msg = '';
+
+    if (len <= 5) { percent = 25; color = 'red'; msg = 'Weak Password'; }
+    else if (len <= 7) { percent = 40; color = 'red'; msg = 'Weak Password'; }
+    else if (len <= 11) { percent = 70; color = 'orange'; msg = 'Fair Password'; }
+    else { percent = 100; color = 'green'; msg = 'Password Looks Good'; }
+
+    fill.style.width = percent + '%';
+    fill.style.background = color;
+
+    text.textContent = msg;
+    text.style.background = color;
+    text.style.color = 'white';
+    text.style.padding = '4px 8px';
+    text.style.borderRadius = '6px';
+    text.style.display = 'inline-block';
+});

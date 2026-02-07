@@ -53,18 +53,15 @@
 
             <div class="form-row">
                 <label class="input-feilds">Password</label>
-                <input type="password" id="password" placeholder="Enter Password" maxlength="20" required>
+                <input type="password" id="password" placeholder="Enter Password" maxlength="16" required>
                 <div class="password-strength">
                     <div id="passwordFill" class="password-strength-fill"></div>
                 </div>
                 <div id="passwordText" class="password-text"></div>
                 <div id="passwordMessage" style="font-size:12px; color:white; margin-top:3px;">
-                    Your password must be more than 4 and less than 20 characters.
+                    Your password must be more than 4 and less than 16 characters.
                 </div>
             </div>
-
-
-
 
             <div class="form-row">
                 <label class="input-feilds">Gender</label>
@@ -137,10 +134,21 @@
         </form>
     </div>
 
-    <!-- Modal -->
+    <!-- Confirm Modal -->
+    <div id="confirmModal" class="modal">
+        <div class="modal-content">
+            <p>Do you want to continue registration?</p>
+            <div class="modal-buttons">
+                <button id="cancelBtn">Cancel</button>
+                <button id="continueBtn">Continue</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
     <div id="popupModal" class="modal">
         <div class="modal-content">
-            <p>Registration Successful!</p>
+            <p>Registration Successful! 🎉</p>
             <button id="okBtn">OK</button>
         </div>
     </div>
@@ -148,11 +156,10 @@
     <!-- Dashboard -->
     <div class="dashboard-wrapper" id="dashboard">
         <h1>🎉🎉Welcome to Dashboard!</h1>
-        <p style="text-align:center; color:white;">All your registration details are saved&sended here.</p>
+        <p style="text-align:center; color:white;">All your registration details are saved & sent here.</p>
     </div>
 
-<script src="script.js"></script>
-
+    <script src="script.js"></script>
 
 </body>
 

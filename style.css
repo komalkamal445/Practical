@@ -170,9 +170,8 @@
 
  .modal-content button {
      margin-top: 20px;
-     background: white;
-     color: #fd38a4;
-     border: none;
+     background: #000000;
+     color: #ffffff;
      padding: 10px 25px;
      font-size: 16px;
      border-radius: 20px;
@@ -182,7 +181,7 @@
  }
 
  .modal-content button:hover {
-     background: #fd38a4;
+     background: linear-gradient(to right, #fd38a4, #f78112);
      color: white;
  }
 
