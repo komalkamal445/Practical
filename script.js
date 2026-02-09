@@ -1,43 +1,16 @@
+// ===== GET ELEMENTS =====
 const form = document.getElementById('studentForm');
-const confirmModal = document.getElementById('confirmModal');
-const popupModal = document.getElementById('popupModal');
-
-const cancelBtn = document.getElementById('cancelBtn');
-const continueBtn = document.getElementById('continueBtn');
-const okBtn = document.getElementById('okBtn');
-
 const registrationForm = document.getElementById('registrationForm');
 const dashboard = document.getElementById('dashboard');
 
-// Form submit → show confirm modal
-form.addEventListener('submit', e => {
-    e.preventDefault();
-    confirmModal.style.display = 'flex';
-});
+// Modals
+const confirmModal = document.getElementById('confirmModal');
+const popupModal = document.getElementById('popupModal');
 
-// Cancel → close confirm modal
-cancelBtn.addEventListener('click', () => {
-    confirmModal.style.display = 'none';
-});
-
-// Continue → close confirm modal, show success modal
-continueBtn.addEventListener('click', () => {
-    confirmModal.style.display = 'none';
-    popupModal.style.display = 'flex';
-});
-
-// OK → close success modal, hide form, show dashboard
-okBtn.addEventListener('click', () => {
-    popupModal.style.display = 'none';
-    registrationForm.style.display = 'none';
-    dashboard.style.display = 'block';
-});
-
-// Click outside modal → close
-window.onclick = (e) => {
-    if (e.target === confirmModal) confirmModal.style.display = 'none';
-    if (e.target === popupModal) popupModal.style.display = 'none';
-};
+// Buttons
+const cancelBtn = document.getElementById('cancelBtn');
+const continueBtn = document.getElementById('continueBtn');
+const okBtn = document.getElementById('okBtn');
 
 // Password strength
 const password = document.getElementById('password');
@@ -45,6 +18,7 @@ const fill = document.getElementById('passwordFill');
 const text = document.getElementById('passwordText');
 const passwordMessage = document.getElementById('passwordMessage');
 
+// ===== PASSWORD STRENGTH =====
 password.addEventListener('input', () => {
     const len = password.value.length;
 
@@ -74,3 +48,65 @@ password.addEventListener('input', () => {
     text.style.borderRadius = '6px';
     text.style.display = 'inline-block';
 });
+
+// ===== FORM SUBMIT: SHOW CONFIRM MODAL =====
+form.addEventListener('submit', e => {
+    e.preventDefault();
+    confirmModal.style.display = 'flex';
+});
+
+// ===== CONFIRM MODAL BUTTONS =====
+cancelBtn.addEventListener('click', () => {
+    confirmModal.style.display = 'none';
+});
+
+continueBtn.addEventListener('click', () => {
+    confirmModal.style.display = 'none';
+    popupModal.style.display = 'flex';
+});
+
+// ===== SUCCESS MODAL =====
+okBtn.addEventListener('click', () => {
+    popupModal.style.display = 'none';
+    registrationForm.style.display = 'none';
+    dashboard.style.display = 'block';
+
+    // ===== GET USER INPUT VALUES =====
+    const roll = form.querySelector('input[placeholder="Enter Roll Number"]').value;
+    const firstName = form.querySelector('input[placeholder="First Name"]').value;
+    const lastName = form.querySelector('input[placeholder="Last Name"]').value;
+    const father = form.querySelector('input[placeholder="Father\'s Full Name"]').value;
+    const dob = form.querySelector('input[type="date"]').value;
+    const mobile = form.querySelector('input[placeholder="Enter Mobile Number"]').value;
+    const email = form.querySelector('input[placeholder="Enter Email"]').value;
+    const gender = form.querySelector('input[name="g"]:checked')?.parentElement.textContent.trim();
+    const course = form.querySelector('select').value;
+    const country = form.querySelectorAll('select')[1].value;
+    const city = form.querySelector('input[placeholder="Enter City"]').value;
+    const address = form.querySelector('textarea').value;
+
+    // ===== POPULATE DASHBOARD =====
+    dashboard.innerHTML = `
+        <h1>🎉 Welcome, ${firstName} ${lastName}!</h1>
+        <p style="text-align:center; font-size:16px;">All your registration details are saved & sent. Here are your details:</p>
+        <div style="background: rgba(0,0,0,0.05); padding: 20px; border-radius: 12px; margin-top:20px; color:black;">
+            <p><b>Roll No:</b> ${roll}</p>
+            <p><b>Student Name:</b> ${firstName} ${lastName}</p>
+            <p><b>Father Name:</b> ${father}</p>
+            <p><b>DOB:</b> ${dob}</p>
+            <p><b>Mobile:</b> ${mobile}</p>
+            <p><b>Email:</b> ${email}</p>
+            <p><b>Gender:</b> ${gender}</p>
+            <p><b>Course:</b> ${course}</p>
+            <p><b>Country:</b> ${country}</p>
+            <p><b>City:</b> ${city}</p>
+            <p><b>Address:</b> ${address}</p>
+        </div>
+    `;
+});
+
+// ===== CLICK OUTSIDE MODALS =====
+window.onclick = (e) => {
+    if (e.target === confirmModal) confirmModal.style.display = 'none';
+    if (e.target === popupModal) popupModal.style.display = 'none';
+};
